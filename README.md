@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-npm i monoxity/monoxity.db
+npm i monoxity.db
 ```
 
 ## Dependancies

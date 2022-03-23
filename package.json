@@ -1,6 +1,6 @@
 {
   "name": "monoxity.db",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An easy to use SQLite wrapper for beginners and supports JSON objects and arrays",
   "main": "dist/index.js",
   "scripts": {},

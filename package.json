@@ -1,13 +1,19 @@
 {
   "name": "monoxity.db",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
+  "description": "An easy to use SQLite wrapper for beginners and supports JSON objects and arrays",
+  "main": "dist/index.js",
+  "scripts": {},
+  "keywords": [
+    "monoxity",
+    "db",
+    "sqlite",
+    "wapper",
+    "sqlite3",
+    "basic",
+    "easy"
+  ],
+  "author": "Monoxity Development",
   "license": "ISC",
   "dependencies": {
     "sqlite": "^4.0.25",

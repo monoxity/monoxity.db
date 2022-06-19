@@ -35,6 +35,9 @@ const data = await database.set("key", "value");
 const data = await database.getAll();
 const data = await database.getAll("key");
 
+// Return an array of the first X number of objects containing the keys and values from the database
+const data = await database.getFirst(10, "key");
+
 // Return the value of a key from the database or return an optional default value
 const data = await database.get("key", "defaultValue");
 

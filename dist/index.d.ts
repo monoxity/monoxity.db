@@ -39,6 +39,35 @@ export declare class MonoxityDB {
         value: any;
     } | false>;
     /**
+     *
+     * @param key
+     * @param value
+     * @param destroyDuplicates
+     *
+     * @returns Promise<{ key: string | number, value: any } | false>
+     *
+     * @example
+     * await database.push("key", "value");
+     */
+    push(key: string | number, value: any, destroyDuplicates?: boolean): Promise<{
+        key: string | number;
+        value: any;
+    } | false>;
+    /**
+     *
+     * @param key
+     * @param value
+     *
+     * @returns Promise<{ key: string | number; value: any } | false>
+     *
+     * @example
+     * const data = await database.pull("key", "value");
+     */
+    pull(key: string | number, value: any): Promise<{
+        key: string | number;
+        value: any;
+    } | false>;
+    /**
      * Get a value from a key or optionally fallback to a default value
      *
      * @param key

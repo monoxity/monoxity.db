@@ -31,6 +31,13 @@ await database.connect(); // This is mandatory or else you will face errors
 // Set value (insert / update) - returns data on success
 const data = await database.set("key", "value");
 
+// Push a value to an array in the database (inspired by quick.db)
+// The third boolean parameter is optional, duplicate array elements will be destroyed if set to true
+const data = await database.push("key", "value", true);
+
+// Remove a value from an array in the database (inspired by quick.db)
+const data = await database.pull("key", "value");
+
 // Return an array of objects containing the keys and values from the database
 const data = await database.getAll();
 const data = await database.getAll("key");

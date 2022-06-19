@@ -75,6 +75,74 @@ export class MonoxityDB {
   }
 
   /**
+   *
+   * @param key
+   * @param value
+   * @param destroyDuplicates
+   *
+   * @returns Promise<{ key: string | number, value: any } | false>
+   *
+   * @example
+   * await database.push("key", "value");
+   */
+  public async push(
+    key: string | number,
+    value: any,
+    destroyDuplicates?: boolean
+  ): Promise<{ key: string | number; value: any } | false> {
+    this.isReady();
+    let currentData = JSON.parse(await this.get(key, "[]"));
+    if (!Array.isArray(currentData)) {
+      throw new Error("[MonoxityDB] Provided key does not return an array");
+    }
+
+    currentData.push(value);
+
+    if (destroyDuplicates) {
+      currentData = [...new Set(currentData)];
+    }
+
+    const success = await this.database.run(
+      `INSERT OR REPLACE INTO '${this.table}' (key, value) VALUES (?, ?);`,
+      key,
+      JSON.stringify(currentData)
+    );
+
+    return success ? { key, value } : false;
+  }
+
+  /**
+   *
+   * @param key
+   * @param value
+   *
+   * @returns Promise<{ key: string | number; value: any } | false>
+   *
+   * @example
+   * const data = await database.pull("key", "value");
+   */
+  public async pull(
+    key: string | number,
+    value: any
+  ): Promise<{ key: string | number; value: any } | false> {
+    this.isReady();
+    let currentData = JSON.parse(await this.get(key, "[]"));
+    if (!Array.isArray(currentData)) {
+      throw new Error("[MonoxityDB] Provided key does not return an array");
+    }
+
+    currentData.splice(currentData.indexOf(value), 1);
+
+    const success = await this.database.run(
+      `INSERT OR REPLACE INTO '${this.table}' (key, value) VALUES (?, ?);`,
+      key,
+      JSON.stringify(currentData)
+    );
+
+    return success ? { key, value } : false;
+  }
+
+  /**
    * Get a value from a key or optionally fallback to a default value
    *
    * @param key
@@ -129,6 +197,7 @@ export class MonoxityDB {
     limit: number,
     key?: string | number
   ): Promise<RowData[]> {
+    this.isReady();
     const q = key
       ? `SELECT * FROM '${this.table}' WHERE key LIKE '%${key}%' LIMIT ${
           limit || 5

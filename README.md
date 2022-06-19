@@ -44,8 +44,8 @@ const data = await database.get("key", "defaultValue");
 // Delete a key from the database
 const success = await database.delete("key");
 
-// Delete ALL keys from your database (destroy)
-const success = await database.clear();
+// Delete ALL keys from your database
+const success = await database.destroy();
 
 // Return a number of keys in the database
 const rows = await database.rowCount();

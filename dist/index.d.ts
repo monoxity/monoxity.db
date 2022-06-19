@@ -83,14 +83,14 @@ export declare class MonoxityDB {
      */
     delete(key: string | number): Promise<boolean>;
     /**
-     * Delete all data from the database
+     * Delete all data from the database table
      *
      * @returns Promise<boolean>
      *
      * @example
-     * await database.clear();
+     * await database.destroy();
      */
-    clear(): Promise<boolean>;
+    destroy(): Promise<boolean>;
     /**
      * Return a number of rows in the database
      *

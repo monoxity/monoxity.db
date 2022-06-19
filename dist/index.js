@@ -135,14 +135,14 @@ class MonoxityDB {
         return success ? true : false;
     }
     /**
-     * Delete all data from the database
+     * Delete all data from the database table
      *
      * @returns Promise<boolean>
      *
      * @example
-     * await database.clear();
+     * await database.destroy();
      */
-    async clear() {
+    async destroy() {
         this.isReady();
         const success = await this.database
             .run(`DELETE FROM '${this.table}'`)

@@ -60,7 +60,17 @@ export declare class MonoxityDB {
      * @example
      * const data = await database.getAll();
      */
-    getAll(key: string | number): Promise<RowData[]>;
+    getAll(key?: string | number): Promise<RowData[]>;
+    /**
+     * Returns an array of the first amount of values from the database
+     *
+     * @param limit
+     * @param key
+     * @returns Promise<any[]>
+     * @example
+     * const data = await database.getFirst(10, "key");
+     */
+    getFirst(limit: number, key?: string | number): Promise<RowData[]>;
     /**
      * Delete a key from the database
      *

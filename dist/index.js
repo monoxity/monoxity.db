@@ -99,6 +99,25 @@ class MonoxityDB {
         }));
     }
     /**
+     * Returns an array of the first amount of values from the database
+     *
+     * @param limit
+     * @param key
+     * @returns Promise<any[]>
+     * @example
+     * const data = await database.getFirst(10, "key");
+     */
+    async getFirst(limit, key) {
+        const q = key
+            ? `SELECT * FROM '${this.table}' WHERE key LIKE '%${key}%' LIMIT ${limit || 5};`
+            : `SELECT * FROM '${this.table}' LIMIT ${limit || 5};`;
+        const data = await this.database.all(q);
+        return data.map((data) => ({
+            key: data["key"],
+            value: JSON.parse(data["value"]),
+        }));
+    }
+    /**
      * Delete a key from the database
      *
      * @param key

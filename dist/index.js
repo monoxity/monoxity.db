@@ -74,7 +74,7 @@ class MonoxityDB {
      */
     async push(key, value, destroyDuplicates) {
         this.isReady();
-        let currentData = JSON.parse(await this.get(key, "[]"));
+        let currentData = await this.get(key, []);
         if (!Array.isArray(currentData)) {
             throw new Error("[MonoxityDB] Provided key does not return an array");
         }
@@ -97,7 +97,7 @@ class MonoxityDB {
      */
     async pull(key, value) {
         this.isReady();
-        let currentData = JSON.parse(await this.get(key, "[]"));
+        let currentData = await this.get(key, []);
         if (!Array.isArray(currentData)) {
             throw new Error("[MonoxityDB] Provided key does not return an array");
         }

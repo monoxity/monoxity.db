@@ -91,7 +91,7 @@ export class MonoxityDB {
     destroyDuplicates?: boolean
   ): Promise<{ key: string | number; value: any } | false> {
     this.isReady();
-    let currentData = JSON.parse(await this.get(key, "[]"));
+    let currentData = await this.get(key, []);
     if (!Array.isArray(currentData)) {
       throw new Error("[MonoxityDB] Provided key does not return an array");
     }
@@ -126,7 +126,7 @@ export class MonoxityDB {
     value: any
   ): Promise<{ key: string | number; value: any } | false> {
     this.isReady();
-    let currentData = JSON.parse(await this.get(key, "[]"));
+    let currentData = await this.get(key, []);
     if (!Array.isArray(currentData)) {
       throw new Error("[MonoxityDB] Provided key does not return an array");
     }
